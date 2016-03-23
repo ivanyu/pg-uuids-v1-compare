@@ -9,7 +9,7 @@ import scalikejdbc.{ConnectionPool, GlobalSettings}
 
 import scala.util.Random
 
-class CompareTest extends FlatSpec with Matchers {
+class CompareSpec extends FlatSpec with Matchers {
 
   import scalikejdbc._
 
@@ -87,6 +87,12 @@ class CompareTest extends FlatSpec with Matchers {
       val randomPairs = seqToRandomPairs(uuids, 10000)
       compareUUIDPairs(randomPairs:_*)
     }
+  }
+
+  it should "correctly work with difference in the highest timestamp bit" in {
+    val u1 = new UUIDV1Generator(0).generate()
+    val u2 = new UUID(u1.getMostSignificantBits | (1 << 11), u1.getLeastSignificantBits)
+    compareUUIDPairs((u1, u2))
   }
 
   private def compareUUIDPairs(pairs: (UUID, UUID)*): Unit = {
