@@ -22,7 +22,8 @@ BEGIN
     END IF;
 
     -- Compare time hi.
-    -- 15 = 0xF = 0000 0000
+    -- 15 = 0xF = 1111
+    -- The highest 4 bits is for version.
     time_hi1 = (get_byte(u1_bytes, 6) & 15) << 8 | get_byte(u1_bytes, 7);
     time_hi2 = (get_byte(u2_bytes, 6) & 15) << 8 | get_byte(u2_bytes, 7);
 
