@@ -1,5 +1,5 @@
 # pg-uuids-v1-compare
-PostgreSQL function to compare version 1 UUIDs based on timestamps, and tests for it.
+PostgreSQL function to compare version 1 (time-based) UUIDs based on timestamps, and tests for it.
 
 **Example:**
 
