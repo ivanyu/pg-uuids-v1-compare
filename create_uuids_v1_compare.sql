@@ -1,6 +1,7 @@
 -- Compare two version 1 UUIDs by timestamps and counters.
 -- Returns 1 IF u1 > u2; -1 IF u1 < u2; 0 IF u1 = u2.
-CREATE OR REPLACE FUNCTION uuids_v1_compare(u1 uuid, u2 uuid) RETURNS SMALLINT AS $$
+CREATE OR REPLACE FUNCTION uuids_v1_compare(u1 uuid, u2 uuid)
+    RETURNS SMALLINT AS $$
 DECLARE
     u1_bytes BYTEA := decode(REPLACE(u1::TEXT, '-', ''), 'hex');
     u2_bytes BYTEA := decode(REPLACE(u2::TEXT, '-', ''), 'hex');
@@ -15,10 +16,12 @@ DECLARE
 BEGIN
     -- Version must be 1.
     IF version1 <> 1 THEN
-        RAISE EXCEPTION 'u1 version is %. Only version 1 must be passed.', version1;
+        RAISE EXCEPTION 'u1 version is %. Only version 1 must be passed.',
+            version1;
     END IF;
     IF version2 <> 1 THEN
-        RAISE EXCEPTION 'u2 version is %. Only version 1 must be passed.', version2;
+        RAISE EXCEPTION 'u2 version is %. Only version 1 must be passed.',
+            version2;
     END IF;
 
     -- Compare time hi.
