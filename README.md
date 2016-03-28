@@ -12,3 +12,5 @@ smallint
 ----------------
 -1
 ```
+
+[A blog post](https://ivanyu.me/blog/2016/03/28/time-based-version-1-uuids-ordering-in-postgresql/) about it.
